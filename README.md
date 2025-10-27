@@ -1,2 +1,3 @@
 # dotConfig
-～/.config文件夹
+dot-config(dot-files)
+

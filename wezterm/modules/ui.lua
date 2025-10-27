@@ -8,13 +8,13 @@ function M.apply(config)
     config.window_padding = {
         left = 8,
         right = 8,
-        top = 10,
+        top = 20,
         bottom = 7.5,
     }
 
     -- 窗口管理相关配置
-    config.initial_cols = 100                  -- 初始宽度（列数）
-    config.initial_rows = 28                   -- 初始高度（行数）
+    config.initial_cols = 120                  -- 初始宽度（列数）
+    config.initial_rows = 30                   -- 初始高度（行数）
     config.window_background_opacity = 0.50    -- 窗口透明度（0-1）
     config.window_decorations = 'RESIZE'       -- 仅保留可缩放边框
     -- config.window_decorations = "INTEGRATED_BUTTONS|RESIZE" -- 显示原生按钮和可缩放边框
@@ -40,7 +40,8 @@ function M.apply(config)
    }
 
     -- 字体配置
-    config.font_size = 18 -- 字体大小
+    config.font_size = 14.5 -- 字体大小
+    config.line_height = 0.9 -- 行高(适配Fastfetch的Ascii Art 字符高度)
     config.font = wezterm.font_with_fallback({ -- 字体回退链
         'JetBrainsMono Nerd Font',          -- 主字体（等宽，支持连字和Nerd Font图标）
         'Apple Color Emoji',                -- Emoji 回退（macOS 专用）

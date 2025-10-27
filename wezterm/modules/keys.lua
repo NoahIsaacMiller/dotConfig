@@ -106,6 +106,22 @@ function M.apply(config)
             mods = 'ALT|SHIFT',
             action = wezterm.action.AdjustPaneSize { 'Down', 1 },
         },
+        -- 窗口最大化切换（macOS: Opt+UpArrow，注意按键名称修正）
+        {
+            key = "UpArrow",  -- 修正为大写的 UpArrow
+            mods = "OPT",
+            action = wezterm.action_callback(function(window, pane)
+                local overrides = window:get_config_overrides() or {}
+                if overrides.window_maximized == true then
+                    window:restore()
+                    overrides.window_maximized = false
+                else
+                    window:maximize()
+                    overrides.window_maximized = true
+                end
+                window:set_config_overrides(overrides)
+            end),
+        },
     }
 end
 
