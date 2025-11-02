@@ -1,7 +1,7 @@
 {
   "css.lint.unknownAtRules": "ignore",
   "scss.lint.unknownAtRules": "ignore",
-  "workbench.colorTheme": "Catppuccin Macchiato",
+  "workbench.colorTheme": "Catppuccin Frappé",
   "git.autofetch": true,
   "code-runner.clearPreviousOutput": true,
   "code-runner.ignoreSelection": true,
@@ -149,10 +149,9 @@
   "parallels-desktop.prlctl.path": "/usr/local/bin/prlctl",
   "parallels-desktop.brew.path": "/opt/homebrew/bin/brew",
   "terminal.integrated.inheritEnv": false,
-  "terminal.integrated.fontSize": 13,
   "chat.agent.enabled": false,
   "workbench.secondarySideBar.defaultVisibility": "hidden",
-  "workbench.iconTheme": "catppuccin-macchiato",
+  "workbench.iconTheme": "catppuccin-frappe",
   "terminal.integrated.fontLigatures.enabled": true,
   "editor.fontFamily": "\"JetbrainsMono Nerd Font\",Menlo, Monaco, 'Courier New', monospace",
   "redhat.telemetry.enabled": true,
@@ -162,5 +161,7 @@
   "terminal.integrated.cursorStyleInactive": "none",
   "terminal.integrated.env.osx": {
     "DISABLE_FASTFETCH": "true"
-  }
+  },
+  "chat.commandCenter.enabled": false,
+  "terminal.integrated.fontSize": 13
 }

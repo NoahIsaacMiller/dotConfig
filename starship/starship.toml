@@ -1,0 +1,194 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Prompt格式
+format = """
+$username\
+$hostname\
+$localip\
+$shlvl\
+$singularity\
+$kubernetes\
+$directory\
+$vcsh\
+$fossil_branch\
+$fossil_metrics\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$hg_branch\
+$hg_state\
+$pijul_channel\
+$docker_context\
+$package\
+$cmake\
+$c\
+$cpp\
+$daml\
+$dart\
+$deno\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$fennel\
+$fortran\
+$gleam\
+$golang\
+$guix_shell\
+$haskell\
+$haxe\
+$helm\
+$java\
+$julia\
+$kotlin\
+$gradle\
+$lua\
+$nim\
+$nodejs\
+$ocaml\
+$opa\
+$php\
+$pulumi\
+$purescript\
+$python\
+$quarto\
+$raku\
+$rlang\
+$red\
+$ruby\
+$rust\
+$scala\
+$solidity\
+$swift\
+$terraform\
+$typst\
+$vlang\
+$vagrant\
+$zig\
+$nix_shell\
+$conda\
+$meson\
+$spack\
+$memory_usage\
+$openstack\
+$nats\
+$direnv\
+$env_var\
+$mise\
+$custom\
+$sudo\
+$line_break\
+$jobs\
+$battery\
+$status\
+$os\
+$container\
+$netns\
+$shell\
+$character"""
+
+right_format =  "$cmd_duration"
+
+# 文件扫描超时时间
+scan_timeout = 30
+
+# starship命令超时时间
+command_timeout = 500
+
+
+# Inserts a blank line between shell prompts
+add_newline = false
+
+# Replace the '❯' symbol in the prompt with '➜'
+[character] # The name of the module we are configuring is 'character'
+success_symbol = '[➜](bold green)' # The 'success_symbol' segment is being set to '➜' with the color 'bold green'
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true
+
+[battery]
+full_symbol = "󰁹 "
+charging_symbol = "󰂄 "
+discharging_symbol = "󰂃 "
+unknown_symbol = "󰁽 "
+empty_symbol = "󰂎 "
+format = "[$symbol$percentage]($style) "
+disabled = false
+
+[[battery.display]]
+threshold = 10
+style ="red bold"
+
+# C语言配置
+[c]
+format = 'via [($symbol) ($name) ($version)]($style) '
+version_format = "v$major.$minor"
+style = "green bold"
+symbol = "C"
+detect_extensions = [ "c", "h" ]
+detect_files = [  ]
+detect_folders = [  ]
+commands = [ [ "cc", "--version" ], [ "gcc", "--version" ], [ "clang", "--version" ] ]
+disabled = false
+
+# C++配置
+[cpp]
+format = 'via [($symbol) ($name) ($version) ]($style)'
+version_format = "v$major.$minor"
+symbol = "C++"
+detect_extensions = ['cpp', 'cc', 'cxx', 'c++', 'hpp', 'hh', 'hxx', 'h++', 'tcc']
+detect_files = [  ]
+detect_folders = [  ]
+commands = [ [ 'c++', '--version' ], [ 'g++', '--version' ], [ 'clang++', '--version' ] ]
+style = "149 bold"
+disabled = false
+
+
+[cmake]
+symbol = ""
+format = 'via [($symbol) ]($style)'
+
+
+# 上次命令执行耗时
+[cmd_duration]
+format = "[󰔚 $duration](bold blue) "
+min_time = 0 # 毫秒
+show_milliseconds = true
+
+
+# Conda配置
+[conda]
+truncation_length = 1
+symbol = "🅒 "
+style = "green bold"
+format = "via [$symbol$environment]($style) "
+ignore_base = true # 忽略base环境
+
+[os]
+format = "[$symbol]($style)"
+style = "bold white"
+disabled = false
+
+[os.symbols]
+Macos = "󰀵 "
+
+[python]
+symbol = " "
+version_format = "v$major.$minor"
+style = "yellow bold"
+
+
+[time]
+disabled = true
+
+[username]
+style_user = 'white bold'
+style_root = 'black bold'
+format = '@[$user]($style) '
+disabled = false
+show_always = true
+aliases = { "corpuser034g" = "matchai" }

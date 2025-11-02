@@ -4,8 +4,20 @@
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-# Oh My Posh配置
-eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/catppuccin.omp.json)"
+# Oh My Posh初始化
+# eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/catppuccin.omp.json)"
+
+# Starship初始化及其配置
+# export STARSHIP_CONFIG=~/.config/starship/starship.toml
+export STARSHIP_CONFIG=~/.config/starship/catppuccin-powerline.toml
+# export STARSHIP_CONFIG=~/.config/starship/pastel-powerline.toml
+eval "$(starship init zsh)"
+
+# Zoxide初始化
+eval "$(zoxide init zsh)"
+
+# the fuck配置
+eval $(thefuck --alias)
 
 # 条件启用Fastfetch
 # 此项正对IDE环境，防止在IDE中使用时，输出到终端
@@ -167,11 +179,6 @@ export EZA_ICONS_PACK=nerd
 export EZA_ICONS_EXTENDED=1
 
 export EZA_ICONS="directory=:symlink=:broken_symlink=:pipe=:socket=:executable=:*.sh=:*.py=:*.js=:*.ts=:*.jsx=:*.tsx=:*.rb=:*.go=:*.rs=:*.java=:*.cpp=:*.c=:*.cs=:*.swift=:*.md=:*.json=:*.yml=:*.toml=:*.xml=:*.html=:*.css=:*.png=:*.jpg=:*.gif=:*.zip=:*.tar=:*.pdf=:.git=:.gitignore=:"
-
-
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
