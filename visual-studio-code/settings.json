@@ -1,167 +1,138 @@
 {
-  "css.lint.unknownAtRules": "ignore",
-  "scss.lint.unknownAtRules": "ignore",
+  /* ════════════════════════════════════════════════
+     🎨 1. 主题与整体观感（我超爱 Catppuccin！）
+  ════════════════════════════════════════════════ */
   "workbench.colorTheme": "Catppuccin Frappé",
-  "git.autofetch": true,
-  "code-runner.clearPreviousOutput": true,
-  "code-runner.ignoreSelection": true,
-  "code-runner.runInTerminal": true,
-  "code-runner.saveAllFilesBeforeRun": true,
-  "code-runner.saveFileBeforeRun": true,
-  "code-runner.executorMap": {
-    "javascript": "node",
-    "java": "cd $dir && javac $fileName && java $fileNameWithoutExt",
-    "c": "cd $dir && gcc $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
-    "zig": "zig run",
-    "cpp": "cd $dir && g++ -std=c++17 $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
-    "objective-c": "cd $dir && gcc -framework Cocoa $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
-    "php": "php",
-    "python": "cd $dir && $pythonPath \"$fileName\"",
-    "perl": "perl",
-    "perl6": "perl6",
-    "ruby": "ruby",
-    "go": "go run",
-    "lua": "lua",
-    "groovy": "groovy",
-    "powershell": "powershell -ExecutionPolicy ByPass -File",
-    "bat": "cmd /c",
-    "shellscript": "bash",
-    "fsharp": "fsi",
-    "csharp": "dotnet run #",
-    "vbscript": "cscript //Nologo",
-    "typescript": "ts-node",
-    "coffeescript": "coffee",
-    "scala": "scala",
-    "swift": "swift",
-    "julia": "julia",
-    "crystal": "crystal",
-    "ocaml": "ocaml",
-    "r": "Rscript",
-    "applescript": "osascript",
-    "clojure": "lein exec",
-    "haxe": "haxe --cwd $dirWithoutTrailingSlash --run $fileNameWithoutExt",
-    "rust": "cd $dir && rustc $fileName && $dir$fileNameWithoutExt",
-    "racket": "racket",
-    "scheme": "csi -script",
-    "ahk": "autohotkey",
-    "autoit": "autoit3",
-    "dart": "dart",
-    "pascal": "cd $dir && fpc $fileName && $dir$fileNameWithoutExt",
-    "d": "cd $dir && dmd $fileName && $dir$fileNameWithoutExt",
-    "haskell": "runghc",
-    "nim": "nim compile --verbosity:0 --hints:off --run",
-    "lisp": "sbcl --script",
-    "kit": "kitc --run",
-    "v": "v run",
-    "sass": "sass --style expanded",
-    "scss": "scss --style expanded",
-    "less": "cd $dir && lessc $fileName $fileNameWithoutExt.css",
-    "FortranFreeForm": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
-    "fortran-modern": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
-    "fortran_fixed-form": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
-    "fortran": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
-    "sml": "cd $dir && sml $fileName",
-    "mojo": "mojo run",
-    "erlang": "escript",
-    "spwn": "spwn build",
-    "pkl": "cd $dir && pkl eval -f yaml $fileName -o $fileNameWithoutExt.yaml",
-    "gleam": "gleam run -m $fileNameWithoutExt"
-  },
-  "editor.minimap.enabled": false,
-  "editor.mouseWheelZoom": true,
-  "terminal.integrated.mouseWheelZoom": true,
-  "workbench.startupEditor": "none",
-  "workbench.colorCustomizations": {},
-  "terminal.integrated.gpuAcceleration": "auto",
-  "window.titleBarStyle": "custom",
-  "[html]": {
-    "editor.defaultFormatter": "vscode.html-language-features"
-  },
-  "liveServer.settings.donotVerifyTags": true,
-  "editor.largeFileOptimizations": false,
-  "security.workspace.trust.untrustedFiles": "open",
-  "terminal.integrated.fontFamily": "JetbrainsMono Nerd Font",
-  "editor.fontSize": 15,
-  "files.autoSave": "onFocusChange",
-  "C_Cpp.default.cppStandard": "c++23",
-  "C_Cpp.default.cStandard": "c23",
-  "[javascript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
-  },
-  "vue.autoInsert.dotValue": true,
-  "workbench.editorAssociations": {
-    "*.xml": "default"
-  },
-  "Lingma.DisplayLanguage": "简体中文",
-  "explorer.fileNesting.patterns": {
-    "*.ts": "${capture}.js",
-    "*.js": "${capture}.js.map, ${capture}.min.js, ${capture}.d.ts",
-    "*.jsx": "${capture}.js",
-    "*.tsx": "${capture}.ts",
-    "tsconfig.json": "tsconfig.*.json, env.d.ts",
-    "package.json": "package-lock.json, pnpm*, .yarnrc*, yarn*, .eslint*, eslint*, .oxlint*, oxlint*, .prettier*, prettier*, .editorconfig",
-    "vite.config.*": "jsconfig*, vitest.config.*, cypress.config.*, playwright.config.*",
-    "*.sqlite": "${capture}.${extname}-*",
-    "*.db": "${capture}.${extname}-*",
-    "*.sqlite3": "${capture}.${extname}-*",
-    "*.db3": "${capture}.${extname}-*",
-    "*.sdb": "${capture}.${extname}-*",
-    "*.s3db": "${capture}.${extname}-*"
-  },
-  "masmtasm.ASM.emulator": "jsdos",
-  "masmtasm.ASM.assembler": "MASM-v6.11",
-  "vsicons.dontShowNewVersionMessage": true,
-  "Lingma.PreferredLanguage for AI Chat": "简体中文",
-  "Lingma.PreferredLanguage forCommitMessage": "简体中文",
-  "trae.chatLanguage": "cn",
-  "create-uniapp-view.directory": true,
-  "create-uniapp-view.style": "scss",
-  "create-uniapp-view.template": "vue3",
-  "C_Cpp.autoAddFileAssociations": false,
-  "files.associations": {
-    "manifest.json": "jsonc",
-    "tsconfig.json": "jsonc",
-    "pages.json": "jsonc"
-  },
-  "explorer.confirmPasteNative": false,
-  "explorer.confirmDelete": false,
-  "[vue]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "explorer.confirmDragAndDrop": false,
-  "[typescript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
-  },
-  "cSpell.userWords": [
-    "axios"
-  ],
-  "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "idf.hasWalkthroughBeenShown": true,
-  "idf.espIdfPath": "/Users/noahmiller/esp/v5.4.2/esp-idf",
-  "idf.toolsPath": "/Users/noahmiller/.espressif",
-  "idf.gitPath": "git",
-  "idf.pythonInstallPath": "/Users/noahmiller/.pyenv/shims/python",
-  "idf.showOnboardingOnInit": false,
-  "parallels-desktop.extension.path": "/Users/noahmiller/.parallels-desktop-vscode",
-  "parallels-desktop.git.path": "/opt/homebrew/bin/git",
-  "parallels-desktop.prlctl.path": "/usr/local/bin/prlctl",
-  "parallels-desktop.brew.path": "/opt/homebrew/bin/brew",
-  "terminal.integrated.inheritEnv": false,
-  "chat.agent.enabled": false,
-  "workbench.secondarySideBar.defaultVisibility": "hidden",
+  "workbench.preferredDarkColorTheme": "Catppuccin Frappé",
+  "workbench.preferredLightColorTheme": "Catppuccin Latte", // 跟 macOS 自动深浅切换
   "workbench.iconTheme": "catppuccin-frappe",
-  "terminal.integrated.fontLigatures.enabled": true,
-  "editor.fontFamily": "\"JetbrainsMono Nerd Font\",Menlo, Monaco, 'Courier New', monospace",
-  "redhat.telemetry.enabled": true,
-  "terminal.external.osxExec": "Wezterm.app",
+  "workbench.startupEditor": "none", // 启动别给我整花里胡哨的欢迎页
+  "window.zoomOnScroll": true, // 滚轮就能放大缩小窗口字体，Retina 屏幕福音
+  "workbench.editor.wrapTabs": true, // Tab 太多时自动换行，告别横向拉到死
+  "workbench.editor.tabSizing": "shrink", // Tab 自动缩小，不浪费空间
+
+  /* ════════════════════════════════════════════════
+     ✍️ 2. 编辑器核心体验（手感拉满系列）
+  ════════════════════════════════════════════════ */
+  "editor.fontSize": 15,
+  "editor.fontFamily": "'mononoki', 'JetBrainsMono Nerd Font', 'Aa偷吃可爱长大的', 'Courier New', monospace", // 前面找不到就用可爱字体兜底～
+  "editor.fontLigatures": true, // => === >>> 连体符号，优雅！
+  "editor.mouseWheelZoom": true, // Ctrl + 滚轮快速调字体大小
+  "editor.minimap.enabled": false, // 迷你地图我不用，省性能
+  "editor.smoothScrolling": true, // 滚动丝滑得像 iPad
+  "editor.stickyScroll.enabled": true, // 函数名常驻顶部，再也不迷路
+  "editor.cursorBlinking": "smooth",
+  "editor.renderWhitespace": "trailing", // 只显示多余的空格，界面干净又实用
+  "files.autoSave": "onFocusChange", // 切出去就自动保存，我太懒了
+
+  /* ════════════════════════════════════════════════
+     💻 3. 内置终端（18号大字 + 丝滑党专属）
+  ════════════════════════════════════════════════ */
+  "terminal.integrated.fontSize": 18, // 老子眼睛近视，必须大！
+  "terminal.integrated.fontFamily": "mononoki, 'JetBrainsMono Nerd Font', 'Aa偷吃可爱长大的p', Monaco, monospace",
+  "terminal.integrated.rightClickBehavior": "paste", // 右键直接粘贴，macOS 必备
+  "terminal.integrated.cursorStyle": "underline", // 下划线光标最好看
   "terminal.integrated.cursorBlinking": true,
-  "terminal.integrated.cursorStyle": "underline",
-  "terminal.integrated.cursorStyleInactive": "none",
-  "terminal.integrated.env.osx": {
-    "DISABLE_FASTFETCH": "true"
+  "terminal.integrated.shellIntegration.enabled": true, // 命令前面显示 ✔ ✘，上一个命令成没成功一目了然
+  "terminal.external.osxExec": "WezTerm.app", // 点外部终端直接开 WezTerm
+
+  /* ════════════════════════════════════════════════
+     🚀 4. 跳转与导航（效率直接起飞）
+  ════════════════════════════════════════════════ */
+  "breadcrumbs.enabled": true, // 面包屑永远开着，定位快到飞起
+  "editor.gotoLocation.multipleDefinitions": "peek", // 跳转定义直接内联 Peek，少点一次鼠标
+  "editor.gotoLocation.multipleImplementations": "peek",
+  "editor.gotoLocation.multipleTypeDefinitions": "peek",
+  "editor.gotoLocation.multipleDeclarations": "peek",
+  "editor.gotoLocation.multipleReferences": "peek",
+  "editor.occurrencesHighlight": "singleFile", // 选中一个词，全文件高亮同名
+  "editor.selectionHighlight": true,
+
+  /* ════════════════════════════════════════════════
+     ⚡️ 5. 保存时自动干活（懒人终极福音）
+  ════════════════════════════════════════════════ */
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit",
+    "source.fixAll": "never"
   },
-  "chat.commandCenter.enabled": false,
-  "terminal.integrated.fontSize": 13
+
+  /* ════════════════════════════════════════════════
+     🧹 6. 文件管理 & 性能优化
+  ════════════════════════════════════════════════ */
+  "explorer.confirmDelete": false, // 删除文件别老问我
+  "explorer.confirmDragAndDrop": false,
+  "files.exclude": {
+    "**/node_modules": true, // 这些玩意儿永远别出现在侧边栏
+    "**/dist": true,
+    "**/build": true,
+    "**/.next": true,
+    "**/.nuxt": true,
+    "**/.git": true,
+    "**/.DS_Store": true
+  },
+
+  /* ════════════════════════════════════════════════
+     🏃‍♂️ 7. Code Runner（全语言一键运行）
+  ════════════════════════════════════════════════ */
+  "code-runner.runInTerminal": true, // 必须在终端跑，输出颜色才好看
+  "code-runner.saveFileBeforeRun": true, // 跑之前自动保存，防止跑旧代码
+  "code-runner.clearPreviousOutput": true, // 每次跑之前清屏，干净！
+  "code-runner.ignoreSelection": true, // 直接跑整个文件，不care你选没选中
+  "code-runner.respectShebang": true, // 尊重文件第一行的 #!/usr/bin/env xxx
+  "code-runner.showExecutionMessage": false, // 不要在状态栏刷“Running xxx...” 很烦
+
+  "code-runner.executorMap": {
+    // ── JavaScript / TypeScript ──────────────────────
+    "javascript": "node", // 直接 node 就完事了
+    "typescript": "ts-node --transpile-only", // 最快方案，不生成文件
+
+    // ── Python ───────────────────────────────────────
+    "python": "python3 -u", // -u 不缓冲，实时输出（macOS/Linux 通用）
+
+    // ── C ────────────────────────────────────────────
+    "c": "cd \"$dir\" && gcc \"$fileName\" -Wall -O2 -o \"$fileNameWithoutExt\" && \"$dir$fileNameWithoutExt\"",
+
+    // ── C++ ──────────────────────────────────────────
+    "cpp": "cd \"$dir\" && g++ -std=c++23 -Wall -O2 \"$fileName\" -o \"$fileNameWithoutExt\" && \"$dir$fileNameWithoutExt\"",
+
+    // ── C# ───────────────────────────────────────────
+    "csharp": "cd \"$dir\" && dotnet run --project .", // 直接 dotnet run 最快（需要 .csproj）
+
+    // ── Go ───────────────────────────────────────────
+    "go": "go run .", // 最推荐写法，自动找 main 包
+
+    // ── Rust ─────────────────────────────────────────
+    "rust": "cd \"$dir\" && rustc \"$fileName\" -O && \"$dir$fileNameWithoutExt\"",
+    // 想更快一点可以用： "rust": "cargo run" （但需要 Cargo.toml）
+
+    // ── Shell Script ─────────────────────────────────
+    "shellscript": "$fileName"
+  },
+
+  /* ════════════════════════════════════════════════
+     🤖 8. 彻底屠 AI 大屠杀（2025 最新最全版）
+  ════════════════════════════════════════════════ */
+  "editor.inlineSuggest.enabled": false, // 幽灵字彻底消失
+  "chat.enabled": false, // 侧边栏 Chat 再见
+  "github.copilot.enable": { "*": false }, // Copilot 死透
+  "extensions.confirmedDisabled": [
+    // 连扩展都不给活路
+    "GitHub.copilot",
+    "GitHub.copilot-chat"
+  ],
+
+  /* ════════════════════════════════════════════════
+     🌟 9. 其他我超爱的小细节
+  ════════════════════════════════════════════════ */
+  "git.autofetch": true, // 自动拉取远程最新提交
+  "zenMode.hideActivityBar": true, // Zen Mode 的时候活动栏也藏起来
+  "zenMode.hideStatusBar": true,
+  "telemetry.telemetryLevel": "off", // 微软你别偷看我
+  "update.mode": "manual", // 更新老子自己点，不准自动烦我
+  "workbench.welcomePage.walkthroughs.openOnInstall": false,
+  "parallels-desktop.extension.path": "/Users/noahmiller/.parallels-desktop-vscode",
+  "parallels-desktop.devops-service.path": "/Users/noahmiller/.parallels-desktop-vscode/tools/prldevops",
+  "parallels-desktop.prlctl.path": "/usr/local/bin/prlctl",
+  "parallels-desktop.git.path": "/opt/homebrew/bin/git",
+  "parallels-desktop.brew.path": "/opt/homebrew/bin/brew" // 第一次打开别给我整教程
 }

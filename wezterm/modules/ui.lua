@@ -13,7 +13,7 @@ function M.apply(config)
     }
 
     -- 窗口管理相关配置
-    config.initial_cols = 120                  -- 初始宽度（列数）
+    config.initial_cols = 130                  -- 初始宽度（列数）
     config.initial_rows = 30                   -- 初始高度（行数）
     config.window_background_opacity = 0.60    -- 窗口透明度（0-1）
     config.window_decorations = 'RESIZE'       -- 仅保留可缩放边框

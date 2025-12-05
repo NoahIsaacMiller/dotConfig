@@ -1,187 +1,23 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
-
-# Path to your Oh My Zsh installation.
+# ──────────────────────────────────────────────────────────
+# 1. 基础路径与环境变量
+# ──────────────────────────────────────────────────────────
 export ZSH="$HOME/.oh-my-zsh"
+export PATH="/opt/nvim-macos-arm64/bin:/opt/arm-none-eabi/bin:$PATH"
 
-# Oh My Posh初始化
-# eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/catppuccin.omp.json)"
 
-# Starship初始化及其配置
-# export STARSHIP_CONFIG=~/.config/starship/starship.toml
+# ──────────────────────────────────────────────────────────
+# 2. 提示符与核心导航工具
+# ──────────────────────────────────────────────────────────
 export STARSHIP_CONFIG=~/.config/starship/catppuccin-powerline.toml
-# export STARSHIP_CONFIG=~/.config/starship/pastel-powerline.toml
 eval "$(starship init zsh)"
 
-# Zoxide初始化
 eval "$(zoxide init zsh)"
-
-# the fuck配置
-eval $(thefuck --alias)
-
-# 条件启用Fastfetch
-# 此项正对IDE环境，防止在IDE中使用时，输出到终端
-if [ -n "$DISABLE_FASTFETCH" ]; then
-else
-    fastfetch --config ~/.config/fastfetch/customized.jsonc
-fi
+eval "$(thefuck --alias)"
 
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time Oh My Zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME=""
-
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment one of the following lines to change the auto-update behavior
-# 禁用自动更新
-zstyle ':omz:update' mode disabled  # disable automatic updates
-# zstyle ':omz:update' mode auto      # update automatically without asking
-# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
-
-# Uncomment the following line to change how often to auto-update (in days).
-# zstyle ':omz:update' frequency 13
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# You can also set it to another string to have that shown instead of the default red dots.
-# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
-# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load?
-# Standard plugins can be found in $ZSH/plugins/
-# Custom plugins may be added to $ZSH_CUSTOM/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(
-  git                       # 内置 Git 命令补全和别名
-  zsh-syntax-highlighting   # 语法高亮
-  zsh-completions           # 增强补全
-  autojump                  # 目录快速跳转
-  zsh-autosuggestions       # 命令自动建议
-)
-
-source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='nvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch $(uname -m)"
-
-# Set personal aliases, overriding those provided by Oh My Zsh libs,
-# plugins, and themes. Aliases can be placed here, though Oh My Zsh
-# users are encouraged to define aliases within a top-level file in
-# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
-# - $ZSH_CUSTOM/aliases.zsh
-# - $ZSH_CUSTOM/macos.zsh
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-
-alias ls="ls --color=always"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# zsh-syntax-highlighting 优化补全
-
-# 补全时忽略大小写
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-
-# 补全菜单用箭头键选择（可视化）
-zstyle ':completion:*' menu select
-
-# 补全结果显示颜色（与 ls 配色一致）
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-
-# zsh-autosuggestions 配置
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=250" 
-
-# 增加历史命令记录条数
-HISTSIZE=100000       # 内存中保存的历史命令数
-SAVEHIST=100000       # 保存到文件的历史命令数
-HISTFILE=~/.zsh_history  # 历史命令保存路径
-
-# 历史命令去重（保留最新的）
-setopt HIST_IGNORE_DUPS
-# 退出终端时自动保存历史
-setopt INC_APPEND_HISTORY
-# 多个终端共享历史命令
-setopt SHARE_HISTORY
-# 忽略以空格开头的命令（避免记录敏感命令）
-setopt HIST_IGNORE_SPACE
-
-# eza 基础配置
-alias ls='eza --color=always --icons --git'
-alias ll='eza -l --color=always --icons --git'
-alias la='eza -la --color=always --icons --git'
-alias ltree='eza --tree --level=3 --color=always --icons --git'
-
-export EZA_ICON_SPACING=1
-export EZA_ICONS_PACK=nerd
-export EZA_ICONS_EXTENDED=1
-
-export EZA_ICONS="directory=:symlink=:broken_symlink=:pipe=:socket=:executable=:*.sh=:*.py=:*.js=:*.ts=:*.jsx=:*.tsx=:*.rb=:*.go=:*.rs=:*.java=:*.cpp=:*.c=:*.cs=:*.swift=:*.md=:*.json=:*.yml=:*.toml=:*.xml=:*.html=:*.css=:*.png=:*.jpg=:*.gif=:*.zip=:*.tar=:*.pdf=:.git=:.gitignore=:"
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
+# ──────────────────────────────────────────────────────────
+# 3. Conda 环境
+# ──────────────────────────────────────────────────────────
 __conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
@@ -193,7 +29,93 @@ else
     fi
 fi
 unset __conda_setup
-# <<< conda initialize <<<
 
-# 配置 Neovim 路径
-export PATH="$PATH:/opt/nvim-macos-arm64/bin"
+
+# ──────────────────────────────────────────────────────────
+# 4. Node 版本管理
+# ──────────────────────────────────────────────────────────
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" --no-use
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+
+# ──────────────────────────────────────────────────────────
+# 5. Oh My Zsh 核心配置
+# ──────────────────────────────────────────────────────────
+zstyle ':omz:update' mode disabled
+DISABLE_LS_COLORS="true"
+
+plugins=(
+  git
+  zsh-syntax-highlighting
+  zsh-autosuggestions
+  zsh-completions
+  autojump
+)
+
+source "$ZSH/oh-my-zsh.sh"
+
+
+# ──────────────────────────────────────────────────────────
+# 6. 补全系统美化
+# ──────────────────────────────────────────────────────────
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*' menu select
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=250"
+
+
+# ──────────────────────────────────────────────────────────
+# 7. 历史记录优化
+# ──────────────────────────────────────────────────────────
+HISTSIZE=100000
+SAVEHIST=100000
+HISTFILE=~/.zsh_history
+
+setopt HIST_IGNORE_DUPS
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_SPACE
+
+
+# ──────────────────────────────────────────────────────────
+# 8. 现代化命令别名 & eza 配置
+# ──────────────────────────────────────────────────────────
+alias ls='eza --color=always --icons --git'
+alias ll='eza -l --color=always --icons --git'
+alias la='eza -la --color=always --icons --git'
+alias ltree='eza --tree --level=3 --icons --git'
+
+alias cat='bat --style=plain'
+alias ff='fd'
+alias rg='rg --smart-case'
+
+export EZA_ICON_SPACING=2
+export EZA_ICONS_PACK=nerd
+export EZA_ICONS_EXTENDED=1
+
+
+# ──────────────────────────────────────────────────────────
+# 9. 开机欢迎画面（只在独立终端模拟器显示，IDE/SSH 全屏蔽）
+# ──────────────────────────────────────────────────────────
+
+# 1. SSH 直接不显示
+[[ -n "${SSH_CLIENT:-}" || -n "${SSH_TTY:-}" ]] && return 0
+
+# 2. 明确是 IDE 终端的全部枪毙
+[[ "${TERM_PROGRAM:-}"     == "vscode"                     ]] && return 0
+[[ "${TERM_PROGRAM:-}"     == "cursor"                     ]] && return 0
+[[ "${TERM_PROGRAM:-}"     =~ ^JetBrains                   ]] && return 0
+[[ "${TERMINAL_EMULATOR:-}" == "JetBrains-JediTerm"        ]] && return 0
+[[ -n "${IDE_TERMINAL:-}"                                 ]] && return 0
+[[ "${TERM_PROGRAM:-}"     == "tmux"                       ]] && return 0
+
+# 3. 一些极端情况下 IDE 会把 TERM 设成 dumb
+[[ "${TERM:-}" == "dumb"                                   ]] && return 0
+
+# 4. 手动禁用开关（留个后门）
+[[ -n "${DISABLE_FASTFETCH:-}"                            ]] && return 0
+
+# ── 上面全部没命中 → 说明是真正的独立终端模拟器（iTerm2、Alacritty、Warp、WezTerm、Kitty、Tabby、Ghostty…）──
+fastfetch --config ~/.config/fastfetch/customized.jsonc 2>/dev/null

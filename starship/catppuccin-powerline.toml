@@ -146,7 +146,7 @@ style = "bg:green"
 format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
 
 [python]
-disabled = true
+disabled = false
 symbol = ""
 style = "bg:green"
 format = '[[ $symbol( $version)(\(#$virtualenv\)) ](fg:blue bg:green)]($style)'
@@ -182,7 +182,9 @@ vimcmd_visual_symbol = '[❮](bold fg:yellow)'
 
 [cmd_duration]
 min_time = 0
+notification_timeout = 2000
 show_milliseconds = true
+show_notifications = false
 format = "󰔛 $duration"
 style = "bg:lavender"
 disabled = false

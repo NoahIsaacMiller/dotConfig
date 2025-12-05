@@ -1,29 +1,30 @@
--- WezTerm 终端配置主文件
--- 采用模块化设计，将不同功能的配置分离到 modules 目录下
-
 local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
 
--- 加载配置模块（按功能逻辑顺序）
-local theme = require 'modules/theme'  -- 主题配置（应首先加载）
-local ui = require 'modules/ui'        -- UI基础配置
-local tab = require 'modules/tab'      -- 标签页配置（应在UI配置后加载）
-local keys = require 'modules/keys'    -- 按键配置
+-- 模块加载顺序很重要！
+require('modules.theme').apply(config)
+require('modules.font').apply(config)
+require('modules.ui').apply(config)
+require('modules.tab').apply(config)
+require('modules.keys').apply(config)
+require('modules.launch').apply(config)
 
--- 应用配置（按依赖顺序应用）
-theme.apply(config)
-ui.apply(config)
-tab.apply(config)
-keys.apply(config)
-
+-- 优雅的启动居中
 wezterm.on("gui-startup", function(cmd)
-    local screen = wezterm.gui.screens().active
-    local ratio = 0.7 -- 这里可以根据需要调整窗口大小占屏幕的比例
-    local width, height = screen.width * ratio, screen.height * ratio
-    local tab, pane, window = wezterm.mux.spawn_window(cmd or {
-        position = { x = (screen.width - width) / 2, y = (screen.height - height) / 2 },
-    })
-    window:gui_window():set_inner_size(width, height)
+  local screen = wezterm.gui.screens().main or wezterm.gui.screens().active
+  if not screen then return end
+
+  local ratio = 0.8
+  local width  = math.floor(screen.width * ratio)
+  local height = math.floor(screen.height * ratio)
+  local x = math.floor((screen.width - width) / 2)
+  local y = math.floor((screen.height - height) / 2)
+
+  local tab, pane, window = wezterm.mux.spawn_window(cmd or {})
+  local gui = window:gui_window()
+
+  gui:set_inner_size(width, height)
+  gui:set_position(x, y)
 end)
 
 return config
