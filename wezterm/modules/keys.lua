@@ -1,128 +1,52 @@
 local wezterm = require 'wezterm'
+
+local act = wezterm.action
+
 local M = {}
 
--- 判断当前系统是否为 macOS
 local is_macos = wezterm.target_triple:find('darwin') ~= nil
--- 定义基础修饰键：macOS 用 CMD，其他系统用 CTRL
-local base_mod = is_macos and 'CMD' or 'CTRL'
+
+local SUPER = is_macos and 'CMD' or 'CTRL|SHIFT'
 
 function M.apply(config)
-    -- 存储窗口默认尺寸（用于还原，改为模块级变量避免作用域问题）
-    local default_window_size = nil
+  -- 定义leader键：按下CTRL+a触发，超时时间1000毫秒，用于前缀式快捷键
+  config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 1000 }
 
-    -- 注册事件：记录初始尺寸
-    wezterm.on('window-created', function(window)
-        local dims = window:get_dimensions()
-        default_window_size = { cols = dims.cols, rows = dims.rows }
-        -- 存储到窗口属性，支持多窗口
-        window:set_config_overrides({
-            default_size = { cols = dims.cols, rows = dims.rows }
-        })
-    end)
+  -- 快捷键映射表：配置按键组合与对应操作的关联
+  config.keys = {
+    -- 水平拆分窗格：SUPER+| 触发，基于当前窗格域创建水平拆分
+    { key = '\\', mods = SUPER, action = act.SplitHorizontal { domain = 'CurrentPaneDomain' } },
+    -- 垂直拆分窗格：SUPER+- 触发，基于当前窗格域创建垂直拆分
+    { key = '-', mods = SUPER, action = act.SplitVertical   { domain = 'CurrentPaneDomain' } },
+    -- 关闭当前窗格：SUPER+w 触发，关闭时不弹出确认提示
+    { key = 'w', mods = SUPER, action = act.CloseCurrentPane { confirm = false } },
 
-    -- 快捷键配置（动态使用 CMD 或 CTRL）
-    config.keys = {
-        -- 垂直分屏（macOS: Cmd+Shift+|，其他: Ctrl+Shift+|）
-        {
-            key = '|',
-            mods = base_mod .. '|SHIFT',
-            action = wezterm.action.SplitHorizontal { domain = 'CurrentPaneDomain' },
-        },
-        -- 水平分屏（macOS: Cmd+Shift+-，其他: Ctrl+Shift+-）
-        {
-            key = '-',
-            mods = base_mod .. '|SHIFT',
-            action = wezterm.action.SplitVertical { domain = 'CurrentPaneDomain' },
-        },
-        -- 关闭当前面板（macOS: Cmd+Shift+W，其他: Ctrl+Shift+W）
-        {
-            key = 'W',
-            mods = base_mod .. '|SHIFT',
-            action = wezterm.action.CloseCurrentPane { confirm = false },
-        },
-        -- 切换面板（Alt+方向键，全系统一致）
-        {
-            key = 'LeftArrow',
-            mods = 'ALT',
-            action = wezterm.action.ActivatePaneDirection 'Left',
-        },
-        {
-            key = 'RightArrow',
-            mods = 'ALT',
-            action = wezterm.action.ActivatePaneDirection 'Right',
-        },
-        {
-            key = 'UpArrow',
-            mods = 'ALT',
-            action = wezterm.action.ActivatePaneDirection 'Up',
-        },
-        {
-            key = 'DownArrow',
-            mods = 'ALT',
-            action = wezterm.action.ActivatePaneDirection 'Down',
-        },
-        -- 快速打开命令面板（macOS: Cmd+Shift+P，其他: Ctrl+Shift+P）
-        {
-            key = 'P',
-            mods = base_mod .. '|SHIFT',
-            action = wezterm.action.ActivateCommandPalette,
-        },
-        -- 复制模式（macOS: Cmd+Shift+C，其他: Ctrl+Shift+C）
-        {
-            key = 'C',
-            mods = base_mod .. '|SHIFT',
-            action = wezterm.action.ActivateCopyMode,
-        },
-        -- 基础 Launcher（macOS: Cmd+Shift+L，其他: Ctrl+Shift+L）
-        {
-            key = 'L',
-            mods = base_mod .. '|SHIFT',
-            action = wezterm.action.ShowLauncher,
-        },
-        -- 切换全屏模式（macOS: Cmd+Shift+F，其他: Ctrl+Shift+F）
-        {
-            key = 'F',
-            mods = base_mod .. '|SHIFT',
-            action = wezterm.action.ToggleFullScreen,
-        },
-        -- 调整面板大小（Alt+Shift+方向键，全系统一致）
-        {
-            key = 'LeftArrow',
-            mods = 'ALT|SHIFT',
-            action = wezterm.action.AdjustPaneSize { 'Left', 1 },
-        },
-        {
-            key = 'RightArrow',
-            mods = 'ALT|SHIFT',
-            action = wezterm.action.AdjustPaneSize { 'Right', 1 },
-        },
-        {
-            key = 'UpArrow',
-            mods = 'ALT|SHIFT',
-            action = wezterm.action.AdjustPaneSize { 'Up', 1 },
-        },
-        {
-            key = 'DownArrow',
-            mods = 'ALT|SHIFT',
-            action = wezterm.action.AdjustPaneSize { 'Down', 1 },
-        },
-        -- 窗口最大化切换（macOS: Opt+UpArrow，注意按键名称修正）
-        {
-            key = "UpArrow",  -- 修正为大写的 UpArrow
-            mods = "OPT",
-            action = wezterm.action_callback(function(window, pane)
-                local overrides = window:get_config_overrides() or {}
-                if overrides.window_maximized == true then
-                    window:restore()
-                    overrides.window_maximized = false
-                else
-                    window:maximize()
-                    overrides.window_maximized = true
-                end
-                window:set_config_overrides(overrides)
-            end),
-        },
-    }
+    -- 窗格方向切换：ALT+h/j/k/l 分别触发向左/下/上/右切换激活窗格
+    { key = 'h', mods = 'ALT', action = act.ActivatePaneDirection 'Left' },
+    { key = 'l', mods = 'ALT', action = act.ActivatePaneDirection 'Right' },
+    { key = 'k', mods = 'ALT', action = act.ActivatePaneDirection 'Up' },
+    { key = 'j', mods = 'ALT', action = act.ActivatePaneDirection 'Down' },
+
+    -- 激活命令面板：SUPER+p 触发，呼出wezterm命令面板（可执行各类终端指令）
+    { key = 'p', mods = SUPER, action = act.ActivateCommandPalette },
+    -- 激活复制模式：SUPER+c 触发，进入终端内容复制的专用模式
+    { key = 'c', mods = SUPER, action = act.ActivateCopyMode },
+    -- 切换全屏模式：SUPER+f 触发，在全屏与普通窗口间切换
+    { key = 'f', mods = SUPER, action = act.ToggleFullScreen },
+    -- 新建标签页：CMD+t 触发，基于当前窗格域创建新标签页
+    { key = 't', mods = 'CMD', action = act.SpawnTab 'CurrentPaneDomain' },
+
+    -- 字体大小调整：CMD+=/-/0 分别触发增大/减小/重置字体大小
+    { key = '=', mods = 'CMD', action = act.IncreaseFontSize },
+    { key = '-', mods = 'CMD', action = act.DecreaseFontSize },
+    { key = '0', mods = 'CMD', action = act.ResetFontSize },
+
+    -- 数字切换标签页：CMD+数字键 切换到对应索引的标签页
+    { key = '1', mods = 'CMD', action = act.ActivateTab(0) },  -- CMD+1 切换到第1个标签页（索引从0开始）
+    { key = '2', mods = 'CMD', action = act.ActivateTab(1) },  -- CMD+2 切换到第2个标签页
+    { key = '9', mods = 'CMD', action = act.ActivateTab(-1) }, -- CMD+9 切换到最后一个标签页（负索引表示倒数）
+  }
 end
 
+-- 导出模块，供主配置文件引入并调用
 return M

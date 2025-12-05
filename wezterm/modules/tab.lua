@@ -2,37 +2,38 @@ local wezterm = require 'wezterm'
 local M = {}
 
 function M.apply(config)
-    -- 标签栏基本配置
-    config.enable_tab_bar = false
-    config.use_fancy_tab_bar = false
-    config.tab_bar_at_bottom = true
-    config.hide_tab_bar_if_only_one_tab = false
-    config.show_new_tab_button_in_tab_bar = true
-    config.tab_max_width = 32
-    
-    -- 自定义标签标题格式化
-    wezterm.on('format-tab-title', function(tab, tabs, panes, config, hover, max_width)
-        local left_rounded = wezterm.nerdfonts.ple_left_half_circle_thick -- 
-        local right_rounded = wezterm.nerdfonts.ple_right_half_circle_thick -- 
-        
-        local edge_bg = tab.is_active and '#313244' or '#1e1e2e'
-        local hover_edge_bg = hover and '#272738' or edge_bg
-        
-        local dir = tab.active_pane.current_working_dir.file_name or '~'
-        local process = tab.active_pane.title:match('([^/]+)$') or 'term'
-        
-        -- 通过换行符 \n 增加上下内边距，间接提高标签栏高度
-        local content = string.format('\n %s · %s \n', dir, process)
-        
-        local rounded_title = string.format(
-            '%s%s%s',
-            wezterm.format({ { Background = { Color = hover_edge_bg } }, { Text = left_rounded } }),
-            content,
-            wezterm.format({ { Background = { Color = hover_edge_bg } }, { Text = right_rounded } })
-        )
-        
-        return { { Text = wezterm.truncate_right(rounded_title, max_width - 2) } }
-    end)
+  config.window_decorations = "RESIZE" 
+  
+  -- 标签栏配置
+  config.enable_tab_bar = true
+  config.hide_tab_bar_if_only_one_tab = true
+  config.use_fancy_tab_bar = false
+  config.tab_bar_at_bottom = false
+  config.tab_max_width = 40
+
+  -- 标签标题格式化函数
+  wezterm.on('format-tab-title', function(tab, tabs, panes, cfg, hover, max_width)
+    local edge_bg = tab.is_active and '#89b4fa' or '#585b70'
+    local bg = tab.is_active and '#313244' or '#1e1e2e'
+    local fg = tab.is_active and '#cdd6f4' or '#a6adc8'
+    local edge_fg = edge_bg
+
+    local dir = tab.active_pane.current_working_dir.file_name '～'
+    local proc = tab.active_pane.foreground_process_name:match('[^/\\]+$') 'shell'
+
+    local title = string.format('  %s · %s  ', dir, proc)
+
+    return {
+      { Background = { Color = edge_bg } },
+      { Text = ' ' },
+      { Background = { Color = bg } },
+      { Foreground = { Color = fg } },
+      { Text = title },
+      { Background = { Color = edge_bg } },
+      { Foreground = { Color = edge_fg } },
+      { Text = ' ' },
+    }
+  end)
 end
 
 return M

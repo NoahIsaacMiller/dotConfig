@@ -1,60 +1,52 @@
--- UI基础配置模块
-
+-- 引入wezterm核心模块，用于终端配置
 local wezterm = require 'wezterm'
+-- 初始化模块表，用于封装配置逻辑
 local M = {}
 
+-- 配置应用函数，接收配置对象作为参数，集中定义窗口相关配置
 function M.apply(config)
-    -- 窗口内边距设置
-    config.window_padding = {
-        left = 8,
-        right = 8,
-        top = 20,
-        bottom = 7.5,
-    }
+  -- 窗口内边距：控制终端内容与窗口边框之间的间距，包含上下左右四个方向的像素值
+  config.window_padding = { left = 10, right = 10, top = 10, bottom = 10 }
+  -- 终端初始列数：终端启动时的宽度，以字符列为单位
+  config.initial_cols = 140
+  -- 终端初始行数：终端启动时的高度，以字符行为单位
+  config.initial_rows = 36
 
-    -- 窗口管理相关配置
-    config.initial_cols = 130                  -- 初始宽度（列数）
-    config.initial_rows = 30                   -- 初始高度（行数）
-    config.window_background_opacity = 0.60    -- 窗口透明度（0-1）
-    config.window_decorations = 'RESIZE'       -- 仅保留可缩放边框
-    -- config.window_decorations = "INTEGRATED_BUTTONS|RESIZE" -- 显示原生按钮和可缩放边框
-    config.window_close_confirmation = 'NeverPrompt' -- 关闭窗口不提示
-    config.native_macos_fullscreen_mode = true -- 启用macOS原生全屏模式
-    config.macos_window_background_blur = 10   -- 高斯模糊
-    config.switch_to_last_active_tab_when_closing_tab = true -- 关闭标签时切换到最后活动的标签
-    config.adjust_window_size_when_changing_font_size = false -- 更改字体大小时不调整窗口大小
-    
-    -- 命令调色板配置
-    config.command_palette_fg_color = '#ffffff' -- 命令调色板前景色
-    config.command_palette_bg_color = '#313245' -- 命令调色板背景色
-    config.command_palette_font_size = 18      -- 命令调色板字体大小
-    config.command_palette_rows = 16           -- 命令调色板显示行数
-    
-    -- 视觉提示（响铃）配置
-    config.visual_bell = {
-      fade_in_function = 'EaseIn',      -- 淡入动画函数
-      fade_in_duration_ms = 250,        -- 淡入持续时间（毫秒）
-      fade_out_function = 'EaseOut',    -- 淡出动画函数
-      fade_out_duration_ms = 250,       -- 淡出持续时间（毫秒）
-      target = 'CursorColor',           -- 视觉提示目标（光标颜色）
-   }
+  -- 窗口背景不透明度：取值范围0.0（完全透明）到1.0（完全不透明），控制窗口背景的透明程度
+  config.window_background_opacity = 0.2
+  -- macOS窗口背景模糊：仅在macOS系统生效，数值越大模糊效果越强
+  config.macos_window_background_blur = 20
+  -- 窗口装饰：控制窗口显示的装饰元素，INTEGRATED_BUTTONS表示集成系统按钮，RESIZE表示保留调整大小功能
+  config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
 
-    -- 字体配置
-    config.font_size = 14.5 -- 字体大小
-    config.line_height = 0.9 -- 行高(适配Fastfetch的Ascii Art 字符高度)
-    config.font = wezterm.font_with_fallback({ -- 字体回退链
-        'JetBrainsMono Nerd Font',          -- 主字体（等宽，支持连字和Nerd Font图标）
-        'Apple Color Emoji',                -- Emoji 回退（macOS 专用）
-    })
-    config.harfbuzz_features = { 'calt=1', 'liga=1', 'zero=1' } -- 启用连字、零宽和 slashed zero 特性
+  -- 窗口关闭确认策略：控制关闭窗口时是否弹出确认提示，NeverPrompt表示不触发提示
+  config.window_close_confirmation = "NeverPrompt"
+  -- macOS原生全屏模式：仅macOS生效，启用系统原生全屏而非终端自定义全屏
+  config.native_macos_fullscreen_mode = true
+  -- 字体大小调整时的窗口尺寸行为：是否随字体大小变化自动调整窗口尺寸
+  config.adjust_window_size_when_changing_font_size = false
 
-    -- 光标配置
-    config.animation_fps = 120              -- 动画帧率（提高以获得更流畅的光标动画）
-    config.cursor_blink_ease_in = 'EaseOut' -- 光标闪烁淡入动画
-    config.cursor_blink_ease_out = 'EaseOut'-- 光标闪烁淡出动画
-    config.default_cursor_style = 'BlinkingBar' -- 默认光标样式（闪烁条形）
-    config.cursor_blink_rate = 650          -- 光标闪烁速率（毫秒）
-    config.cursor_thickness = 2             -- 光标粗细
+  -- 命令面板字体大小：控制命令面板（Ctrl+Shift+P呼出）的字体尺寸
+  config.command_palette_font_size = 15
+  -- 命令面板显示行数：限制命令面板中最多展示的选项行数
+  config.command_palette_rows = 12
+
+  -- 视觉提示（视觉铃）：终端触发bell时的视觉反馈配置
+  config.visual_bell = {
+    fade_in_duration_ms = 150,  -- 视觉提示渐入动画时长，单位为毫秒
+    fade_out_duration_ms = 150, -- 视觉提示渐出动画时长，单位为毫秒
+    target = 'CursorColor',     -- 视觉提示的作用目标，此处为修改光标颜色
+  }
+
+  -- 动画帧率：控制UI动画的刷新帧率，数值越高动画越流畅，需显示器支持对应帧率
+  config.animation_fps = 120
+  -- 光标闪烁频率：控制光标闪烁的间隔时间，单位为毫秒，数值越大闪烁越慢
+  config.cursor_blink_rate = 600
+  -- 默认光标样式：可选值包含SteadyBar（常亮竖线）、Block（方块）、BlinkingBlock（闪烁方块）等
+  config.default_cursor_style = 'BlinkingBar'
+  -- 光标厚度：控制光标竖线的宽度，支持像素单位的数值设置
+  config.cursor_thickness = "2px"
 end
 
-return M -- 返回模块对象
+-- 导出模块，供主配置文件引入并调用
+return M
