@@ -1,138 +1,200 @@
 {
-  /* ════════════════════════════════════════════════
-     🎨 1. 主题与整体观感（我超爱 Catppuccin！）
+    /* ════════════════════════════════════════════════
+     主题与整体观感（我超爱 Catppuccin！）
   ════════════════════════════════════════════════ */
-  "workbench.colorTheme": "Catppuccin Frappé",
-  "workbench.preferredDarkColorTheme": "Catppuccin Frappé",
-  "workbench.preferredLightColorTheme": "Catppuccin Latte", // 跟 macOS 自动深浅切换
-  "workbench.iconTheme": "catppuccin-frappe",
-  "workbench.startupEditor": "none", // 启动别给我整花里胡哨的欢迎页
-  "window.zoomOnScroll": true, // 滚轮就能放大缩小窗口字体，Retina 屏幕福音
-  "workbench.editor.wrapTabs": true, // Tab 太多时自动换行，告别横向拉到死
-  "workbench.editor.tabSizing": "shrink", // Tab 自动缩小，不浪费空间
+    "workbench.colorTheme": "Catppuccin Frappé", // 默认使用Catppuccin Frappé深色主题
+    "workbench.preferredDarkColorTheme": "Catppuccin Frappé", // 深色模式下固定用Frappé
+    "workbench.preferredLightColorTheme": "Catppuccin Latte", // 浅色模式下用Latte，适配macOS自动切换
+    "workbench.iconTheme": "catppuccin-frappe", // 配套的Catppuccin图标主题，视觉统一
+    "workbench.startupEditor": "none", // 启动别给我整花里胡哨的欢迎页，直接进编辑界面
+    "window.zoomOnScroll": true, // 按住Ctrl+滚轮就能放大缩小窗口，Retina屏幕福音
+    "workbench.editor.wrapTabs": true, // Tab太多时自动换行，告别横向拉到死
+    "workbench.editor.tabSizing": "shrink", // Tab宽度自动缩小，不浪费空间
 
-  /* ════════════════════════════════════════════════
-     ✍️ 2. 编辑器核心体验（手感拉满系列）
+    /* ════════════════════════════════════════════════
+     编辑器核心体验（手感拉满系列）
   ════════════════════════════════════════════════ */
-  "editor.fontSize": 15,
-  "editor.fontFamily": "'mononoki', 'JetBrainsMono Nerd Font', 'Aa偷吃可爱长大的', 'Courier New', monospace", // 前面找不到就用可爱字体兜底～
-  "editor.fontLigatures": true, // => === >>> 连体符号，优雅！
-  "editor.mouseWheelZoom": true, // Ctrl + 滚轮快速调字体大小
-  "editor.minimap.enabled": false, // 迷你地图我不用，省性能
-  "editor.smoothScrolling": true, // 滚动丝滑得像 iPad
-  "editor.stickyScroll.enabled": true, // 函数名常驻顶部，再也不迷路
-  "editor.cursorBlinking": "smooth",
-  "editor.renderWhitespace": "trailing", // 只显示多余的空格，界面干净又实用
-  "files.autoSave": "onFocusChange", // 切出去就自动保存，我太懒了
+    "editor.fontSize": 15, // 基础字体大小，兼顾清晰和屏占比
+    "editor.fontFamily": "'mononoki', 'JetBrainsMono Nerd Font', 'Aa偷吃可爱长大的', 'Courier New', monospace", // 优先用编程字体，找不到就用可爱字体兜底～
+    "editor.fontLigatures": true, // 启用字体连字，=> === >>> 这些符号更优雅！
+    "editor.mouseWheelZoom": true, // Ctrl + 滚轮快速调节编辑器字体大小
+    "editor.minimap.enabled": false, // 迷你地图我不用，省性能还清爽
+    "editor.smoothScrolling": true, // 滚动丝滑得像 iPad，告别卡顿感
+    "editor.stickyScroll.enabled": true, // 函数/类名常驻顶部，嵌套再深也不迷路
+    "editor.cursorBlinking": "smooth", // 光标平滑闪烁，比默认的生硬闪烁舒服
+    "editor.renderWhitespace": "trailing", // 只显示行尾多余的空格，界面干净又能查冗余空格
+    "editor.rulers": [80, 120], // 80/120字符处显示提示线，规范代码行长度
+    "editor.multiCursorModifier": "alt", // Alt+点击触发多光标，批量编辑超方便
+    "editor.dragAndDrop": false, // 关闭文本拖拽，避免误选后拖拽改代码
 
-  /* ════════════════════════════════════════════════
-     💻 3. 内置终端（18号大字 + 丝滑党专属）
+    /* ════════════════════════════════════════════════
+     跳转与导航（效率直接起飞）
   ════════════════════════════════════════════════ */
-  "terminal.integrated.fontSize": 18, // 老子眼睛近视，必须大！
-  "terminal.integrated.fontFamily": "mononoki, 'JetBrainsMono Nerd Font', 'Aa偷吃可爱长大的p', Monaco, monospace",
-  "terminal.integrated.rightClickBehavior": "paste", // 右键直接粘贴，macOS 必备
-  "terminal.integrated.cursorStyle": "underline", // 下划线光标最好看
-  "terminal.integrated.cursorBlinking": true,
-  "terminal.integrated.shellIntegration.enabled": true, // 命令前面显示 ✔ ✘，上一个命令成没成功一目了然
-  "terminal.external.osxExec": "WezTerm.app", // 点外部终端直接开 WezTerm
+    "breadcrumbs.enabled": true, // 面包屑导航永远开着，文件层级定位快到飞起
+    "editor.gotoLocation.multipleDefinitions": "peek", // 多个定义时直接内联Peek查看，少点一次鼠标
+    "editor.gotoLocation.multipleImplementations": "peek", // 多个实现时内联Peek
+    "editor.gotoLocation.multipleTypeDefinitions": "peek", // 多个类型定义时内联Peek
+    "editor.gotoLocation.multipleDeclarations": "peek", // 多个声明时内联Peek
+    "editor.gotoLocation.multipleReferences": "peek", // 多个引用时内联Peek
+    "editor.occurrencesHighlight": "singleFile", // 选中变量/函数，全文件高亮同名内容
+    "editor.selectionHighlight": true, // 高亮选中的文本，避免选中后找不到
 
-  /* ════════════════════════════════════════════════
-     🚀 4. 跳转与导航（效率直接起飞）
+    /* ════════════════════════════════════════════════
+     文件管理 & 自动保存（懒人终极福音）
   ════════════════════════════════════════════════ */
-  "breadcrumbs.enabled": true, // 面包屑永远开着，定位快到飞起
-  "editor.gotoLocation.multipleDefinitions": "peek", // 跳转定义直接内联 Peek，少点一次鼠标
-  "editor.gotoLocation.multipleImplementations": "peek",
-  "editor.gotoLocation.multipleTypeDefinitions": "peek",
-  "editor.gotoLocation.multipleDeclarations": "peek",
-  "editor.gotoLocation.multipleReferences": "peek",
-  "editor.occurrencesHighlight": "singleFile", // 选中一个词，全文件高亮同名
-  "editor.selectionHighlight": true,
+    "files.autoSave": "onFocusChange", // 切换窗口/标签就自动保存，我太懒了不想手动点
+    "files.autoSaveDelay": 500, // 自动保存延迟500ms，避免频繁写盘占用资源
+    "explorer.sortOrder": "type", // 侧边栏按文件类型排序，同类型文件放一起好找
+    "explorer.confirmDelete": false, // 删除文件别老弹确认框，相信我的操作
+    "explorer.confirmDragAndDrop": false, // 拖拽文件别弹确认框，操作更丝滑
+    "explorer.autoReveal": false, // 关闭文件打开后自动在侧边栏定位，高频切换文件更流畅
+    "explorer.fileNesting.enabled": true, // 启用文件嵌套，把关联文件叠在一起（如package.json+lock文件）
+    "explorer.fileNesting.patterns": {
+        "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml", // package.json嵌套所有锁文件
+        "tsconfig.json": "tsconfig.*.json", // tsconfig.json嵌套所有子配置
+        ".env": ".env.*, .env" // .env嵌套所有环境变量文件
+    },
+    "files.exclude": {
+        "**/node_modules": true, // 侧边栏隐藏node_modules，文件太多卡到爆
+        "**/dist": true, // 隐藏打包产物dist
+        "**/build": true, // 隐藏build目录
+        "**/.next": true, // 隐藏Next.js构建目录
+        "**/.nuxt": true, // 隐藏Nuxt.js构建目录
+        "**/.git": true, // 隐藏.git目录
+        "**/.DS_Store": true, // 隐藏macOS无用的DS_Store文件
+        "**/.vite": true, // 隐藏Vite缓存目录
+        "**/__pycache__": true, // 隐藏Python缓存目录
+        "**/.pytest_cache": true, // 隐藏pytest缓存目录
+        "**/*.pyc": true, // 隐藏Python编译后的pyc文件
+        "**/coverage": true, // 隐藏测试覆盖率报告目录
+        "**/.pnpm-store": true, // 隐藏pnpm缓存目录
+        "**/.yarn": true, // 隐藏yarn缓存目录
+        "**/.idea": true, // 隐藏WebStorm缓存目录
+        "**/out": true, // 隐藏TypeScript编译产物目录
+        "**/.eslintcache": true // 隐藏ESLint缓存文件
+    },
 
-  /* ════════════════════════════════════════════════
-     ⚡️ 5. 保存时自动干活（懒人终极福音）
+    /* ════════════════════════════════════════════════
+     内置终端（18号大字 + 丝滑党专属）
   ════════════════════════════════════════════════ */
-  "editor.codeActionsOnSave": {
-    "source.organizeImports": "explicit",
-    "source.fixAll": "never"
-  },
+    "terminal.integrated.fontSize": 18, // 老子眼睛近视，终端字体必须大！
+    "terminal.integrated.fontFamily": "mononoki, 'JetBrainsMono Nerd Font', 'Aa偷吃可爱长大的', Monaco, monospace", // 终端和编辑器字体保持一致
+    "terminal.integrated.rightClickBehavior": "paste", // 右键直接粘贴，macOS不用再按Cmd+V
+    "terminal.integrated.cursorStyle": "underline", // 下划线光标最好看，比方块光标易定位
+    "terminal.integrated.cursorBlinking": true, // 光标闪烁，避免看不到光标位置
+    "terminal.integrated.shellIntegration.enabled": true, // 命令前显示✔/✘，上条命令成功与否一目了然
+    "terminal.external.osxExec": "WezTerm.app", // 点击外部终端按钮直接打开WezTerm，不用系统默认终端
 
-  /* ════════════════════════════════════════════════
-     🧹 6. 文件管理 & 性能优化
+    /* ════════════════════════════════════════════════
+     保存与格式化（懒人终极福音）
   ════════════════════════════════════════════════ */
-  "explorer.confirmDelete": false, // 删除文件别老问我
-  "explorer.confirmDragAndDrop": false,
-  "files.exclude": {
-    "**/node_modules": true, // 这些玩意儿永远别出现在侧边栏
-    "**/dist": true,
-    "**/build": true,
-    "**/.next": true,
-    "**/.nuxt": true,
-    "**/.git": true,
-    "**/.DS_Store": true
-  },
+    "editor.formatOnSave": true, // 保存时自动格式化
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit", // 保存自动整理导入语句，删除未使用的import
+        "source.fixAll": "never" // 关闭保存自动修复所有问题，避免自动改代码踩坑
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode", // 默认用Prettier格式化代码，风格统一
+    "editor.formatOnType": false, // 禁用编辑器自带的格式化（避免和Prettier冲突）
+    "editor.tabSize": 4, // 缩进4个空格
+    "editor.insertSpaces": true, // 用空格代替Tab
+    "editor.detectIndentation": false,
+    "eslint.validate": ["javascript", "typescript", "vue", "json"], // ESLint校验这些文件类型，提前发现语法问题
 
-  /* ════════════════════════════════════════════════
-     🏃‍♂️ 7. Code Runner（全语言一键运行）
+    /* ════════════════════════════════════════════════
+     Prettier 专属格式化（前端/JSON/Markdown等）
   ════════════════════════════════════════════════ */
-  "code-runner.runInTerminal": true, // 必须在终端跑，输出颜色才好看
-  "code-runner.saveFileBeforeRun": true, // 跑之前自动保存，防止跑旧代码
-  "code-runner.clearPreviousOutput": true, // 每次跑之前清屏，干净！
-  "code-runner.ignoreSelection": true, // 直接跑整个文件，不care你选没选中
-  "code-runner.respectShebang": true, // 尊重文件第一行的 #!/usr/bin/env xxx
-  "code-runner.showExecutionMessage": false, // 不要在状态栏刷“Running xxx...” 很烦
+    "prettier.singleQuote": true, // Prettier强制用单引号，符合我的代码风格
+    "prettier.semi": false, // Prettier结尾不加冒号，精简代码
+    "prettier.printWidth": 80, // 每行最多80字符，和编辑器提示线对齐
+    "prettier.tabWidth": 4, // 缩进4个空格
+    "prettier.useTabs": false, // 不用Tab
+    "prettier.trailingComma": "none", // 数组/对象最后一项不加逗号
+    "prettier.bracketSpacing": true, // 对象大括号前后加空格 { foo: bar }
+    "prettier.arrowParens": "avoid", // 箭头函数单参数省略括号 (x) => x → x => x
+    "prettier.vueIndentScriptAndStyle": true, // Vue的script/style标签内缩进
+    "prettier.endOfLine": "lf", // 换行符LF（跨平台统一）
+    "prettier.documentSelectors": [
+        "**/*.js",
+        "**/*.ts",
+        "**/*.jsx",
+        "**/*.tsx",
+        "**/*.vue",
+        "**/*.json",
+        "**/*.md",
+        "**/*.css",
+        "**/*.scss",
+        "**/*.yml"
+    ],
 
-  "code-runner.executorMap": {
-    // ── JavaScript / TypeScript ──────────────────────
-    "javascript": "node", // 直接 node 就完事了
-    "typescript": "ts-node --transpile-only", // 最快方案，不生成文件
-
-    // ── Python ───────────────────────────────────────
-    "python": "python3 -u", // -u 不缓冲，实时输出（macOS/Linux 通用）
-
-    // ── C ────────────────────────────────────────────
-    "c": "cd \"$dir\" && gcc \"$fileName\" -Wall -O2 -o \"$fileNameWithoutExt\" && \"$dir$fileNameWithoutExt\"",
-
-    // ── C++ ──────────────────────────────────────────
-    "cpp": "cd \"$dir\" && g++ -std=c++23 -Wall -O2 \"$fileName\" -o \"$fileNameWithoutExt\" && \"$dir$fileNameWithoutExt\"",
-
-    // ── C# ───────────────────────────────────────────
-    "csharp": "cd \"$dir\" && dotnet run --project .", // 直接 dotnet run 最快（需要 .csproj）
-
-    // ── Go ───────────────────────────────────────────
-    "go": "go run .", // 最推荐写法，自动找 main 包
-
-    // ── Rust ─────────────────────────────────────────
-    "rust": "cd \"$dir\" && rustc \"$fileName\" -O && \"$dir$fileNameWithoutExt\"",
-    // 想更快一点可以用： "rust": "cargo run" （但需要 Cargo.toml）
-
-    // ── Shell Script ─────────────────────────────────
-    "shellscript": "$fileName"
-  },
-
-  /* ════════════════════════════════════════════════
-     🤖 8. 彻底屠 AI 大屠杀（2025 最新最全版）
+    /* ════════════════════════════════════════════════
+     前端专属：2空格缩进（覆盖全局）
   ════════════════════════════════════════════════ */
-  "editor.inlineSuggest.enabled": false, // 幽灵字彻底消失
-  "chat.enabled": false, // 侧边栏 Chat 再见
-  "github.copilot.enable": { "*": false }, // Copilot 死透
-  "extensions.confirmedDisabled": [
-    // 连扩展都不给活路
-    "GitHub.copilot",
-    "GitHub.copilot-chat"
-  ],
+    "[javascript]": { "editor.tabSize": 2, "editor.rulers": [80] },
+    "[typescript]": { "editor.tabSize": 2, "editor.rulers": [80] },
+    "[javascriptreact]": { "editor.tabSize": 2, "editor.rulers": [80] },
+    "[typescriptreact]": { "editor.tabSize": 2, "editor.rulers": [80] },
+    "[vue]": { "editor.tabSize": 2, "editor.rulers": [80] },
+    "[html]": { "editor.tabSize": 2, "editor.rulers": [80] },
+    "[css]": { "editor.tabSize": 2, "editor.rulers": [80] },
+    "[scss]": { "editor.tabSize": 2, "editor.rulers": [80] },
+    "[less]": { "editor.tabSize": 2, "editor.rulers": [80] },
+    "[json]": { "editor.tabSize": 2, "editor.rulers": [80] },
+    "[jsonc]": { "editor.tabSize": 2, "editor.rulers": [80] },
+    "[markdown]": {
+        "editor.tabSize": 2,
+        "editor.rulers": [80],
+        "editor.formatOnSave": false,
+        "prettier.enable": false // 禁用Prettier格式化MD
+    },
 
-  /* ════════════════════════════════════════════════
-     🌟 9. 其他我超爱的小细节
+    /* ════════════════════════════════════════════════
+     Code Runner（全语言一键运行）
   ════════════════════════════════════════════════ */
-  "git.autofetch": true, // 自动拉取远程最新提交
-  "zenMode.hideActivityBar": true, // Zen Mode 的时候活动栏也藏起来
-  "zenMode.hideStatusBar": true,
-  "telemetry.telemetryLevel": "off", // 微软你别偷看我
-  "update.mode": "manual", // 更新老子自己点，不准自动烦我
-  "workbench.welcomePage.walkthroughs.openOnInstall": false,
-  "parallels-desktop.extension.path": "/Users/noahmiller/.parallels-desktop-vscode",
-  "parallels-desktop.devops-service.path": "/Users/noahmiller/.parallels-desktop-vscode/tools/prldevops",
-  "parallels-desktop.prlctl.path": "/usr/local/bin/prlctl",
-  "parallels-desktop.git.path": "/opt/homebrew/bin/git",
-  "parallels-desktop.brew.path": "/opt/homebrew/bin/brew" // 第一次打开别给我整教程
+    "code-runner.runInTerminal": true, // 必须在终端运行，输出有颜色还能交互
+    "code-runner.saveFileBeforeRun": true, // 运行前自动保存文件，防止跑旧代码
+    "code-runner.clearPreviousOutput": true, // 每次运行前清屏，输出结果更干净
+    "code-runner.ignoreSelection": true, // 直接运行整个文件，不管有没有选中代码
+    "code-runner.respectShebang": true, // 尊重文件第一行的#!/usr/bin/env，用指定解释器运行
+    "code-runner.showExecutionMessage": false, // 不在状态栏刷“Running xxx...”，看着烦
+    "code-runner.executorMap": {
+        "javascript": "node", // JS直接用node运行，简单粗暴
+        "typescript": "ts-node --transpile-only", // TS用ts-node实时编译，不生成文件最快
+        "python": "python3 -u", // Python用python3运行，-u关闭缓冲实时输出（macOS/Linux通用）
+        "c": "cd \"$dir\" && gcc \"$fileName\" -Wall -O2 -o \"$fileNameWithoutExt\" && \"$dir$fileNameWithoutExt\"", // C语言编译+运行，开警告+优化
+        "cpp": "cd \"$dir\" && g++ -std=c++23 -Wall -O2 \"$fileName\" -o \"$fileNameWithoutExt\" && \"$dir$fileNameWithoutExt\"", // C++23编译+运行，开警告+优化
+        "csharp": "cd \"$dir\" && dotnet run --project .", // C#直接dotnet run，需要csproj文件
+        "go": "go run .", // Go直接运行当前目录，自动找main包
+        "rust": "cd \"$dir\" && rustc \"$fileName\" -O && \"$dir$fileNameWithoutExt\"", // Rust编译+运行，开优化
+        "shellscript": "$fileName" // Shell脚本直接运行
+    },
+
+    /* ════════════════════════════════════════════════
+     Git 增强配置
+  ════════════════════════════════════════════════ */
+    "git.autofetch": true, // 自动拉取远程最新提交，不用手动git fetch
+    "git.confirmSync": false, // Git同步（拉/推）不弹确认框，操作更快捷
+
+    /* ════════════════════════════════════════════════
+     交互体验优化
+  ════════════════════════════════════════════════ */
+    "zenMode.hideActivityBar": true, // 专注模式（Zen Mode）隐藏活动栏，减少干扰
+    "zenMode.hideStatusBar": true, // 专注模式隐藏状态栏，沉浸式编码
+
+    /* ════════════════════════════════════════════════
+     隐私与更新设置
+  ════════════════════════════════════════════════ */
+    "editor.inlineSuggest.enabled": false, // 关闭AI内联提示，幽灵字彻底消失
+    "chat.enabled": false, // 关闭侧边栏Chat功能，用不到还占空间
+    "github.copilot.enable": { "*": false }, // 全局关闭Copilot，完全不用AI提示
+    "extensions.confirmedDisabled": [
+        "GitHub.copilot", // 彻底禁用Copilot扩展
+        "GitHub.copilot-chat" // 彻底禁用Copilot Chat扩展
+    ],
+    "telemetry.telemetryLevel": "off", // 关闭所有遥测，微软别偷看我的操作
+    "update.mode": "manual", // 手动检查更新，不自动弹更新提示烦我
+
+    /* ════════════════════════════════════════════════
+     第三方扩展适配
+  ════════════════════════════════════════════════ */
+    "parallels-desktop.extension.path": "/Users/noahmiller/.parallels-desktop-vscode" // Parallels Desktop扩展的自定义路径
 }
