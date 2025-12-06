@@ -1,71 +1,116 @@
+/*
+本配置需要严格遵守的规范
+1. 修改时注释风格保持不变。
+2. 注释不能加序号。
+3. 配置项要合理分组，并进行合理的组内排序。
+
+对AI提出的要求
+1. 修改时，禁止变更注释风格
+*/
 {
     /* ════════════════════════════════════════════════
-     主题与整体观感（我超爱 Catppuccin！）
-  ════════════════════════════════════════════════ */
+       主题与整体观感（我超爱 Catppuccin！）
+    ════════════════════════════════════════════════ */
+    // 主题核心（优先定义）
     "workbench.colorTheme": "Catppuccin Frappé", // 默认使用Catppuccin Frappé深色主题
     "workbench.preferredDarkColorTheme": "Catppuccin Frappé", // 深色模式下固定用Frappé
     "workbench.preferredLightColorTheme": "Catppuccin Latte", // 浅色模式下用Latte，适配macOS自动切换
     "workbench.iconTheme": "catppuccin-frappe", // 配套的Catppuccin图标主题，视觉统一
+    // 启动与窗口（次优先级）
     "workbench.startupEditor": "none", // 启动别给我整花里胡哨的欢迎页，直接进编辑界面
     "window.zoomOnScroll": true, // 按住Ctrl+滚轮就能放大缩小窗口，Retina屏幕福音
+    // 编辑器标签（界面布局）
     "workbench.editor.wrapTabs": true, // Tab太多时自动换行，告别横向拉到死
     "workbench.editor.tabSizing": "shrink", // Tab宽度自动缩小，不浪费空间
 
     /* ════════════════════════════════════════════════
-     编辑器核心体验（手感拉满系列）
-  ════════════════════════════════════════════════ */
+       编辑器核心体验（手感拉满系列）
+    ════════════════════════════════════════════════ */
+    // 基础字体（核心显示）
     "editor.fontSize": 15, // 基础字体大小，兼顾清晰和屏占比
     "editor.fontFamily": "'mononoki', 'JetBrainsMono Nerd Font', 'Aa偷吃可爱长大的', 'Courier New', monospace", // 优先用编程字体，找不到就用可爱字体兜底～
     "editor.fontLigatures": true, // 启用字体连字，=> === >>> 这些符号更优雅！
     "editor.mouseWheelZoom": true, // Ctrl + 滚轮快速调节编辑器字体大小
-    "editor.minimap.enabled": false, // 迷你地图我不用，省性能还清爽
-    "editor.smoothScrolling": true, // 滚动丝滑得像 iPad，告别卡顿感
-    "editor.stickyScroll.enabled": true, // 函数/类名常驻顶部，嵌套再深也不迷路
+    // 光标与边距（编辑定位）
     "editor.cursorBlinking": "smooth", // 光标平滑闪烁，比默认的生硬闪烁舒服
+    "editor.cursorWidth": 2, // 光标宽度设为2px，近视党更容易定位
+    "editor.glyphMargin": true, // 显示左侧符号边距（断点/错误提示更清晰）
+    // 空格与标尺（代码规范）
     "editor.renderWhitespace": "trailing", // 只显示行尾多余的空格，界面干净又能查冗余空格
     "editor.rulers": [80, 120], // 80/120字符处显示提示线，规范代码行长度
+    "editor.wordWrap": "on", // 代码自动换行，不用横向滚动（长行代码友好）
+    // 滚动与折叠（大文件适配）
+    "editor.smoothScrolling": true, // 滚动丝滑得像 iPad，告别卡顿感
+    "editor.stickyScroll.enabled": true, // 函数/类名常驻顶部，嵌套再深也不迷路
+    "editor.scrollBeyondLastLine": false, // 禁止滚动到最后一行之外，界面更紧凑
+    "editor.folding": true, // 启用代码折叠（大文件折叠函数/类，更清爽）
+    "editor.foldingStrategy": "indentation", // 按缩进折叠，适配所有语言
+    // 辅助显示（性能与简洁）
+    "editor.minimap.enabled": false, // 迷你地图我不用，省性能还清爽
+    // 编辑操作（批量与防误触）
     "editor.multiCursorModifier": "alt", // Alt+点击触发多光标，批量编辑超方便
     "editor.dragAndDrop": false, // 关闭文本拖拽，避免误选后拖拽改代码
-
-    /* ════════════════════════════════════════════════
-     跳转与导航（效率直接起飞）
-  ════════════════════════════════════════════════ */
+    // 滚动细节
+    "editor.scrollbar.vertical": "hidden", // 隐藏垂直滚动条（Retina屏更简洁，鼠标移到边缘自动显示）
+    "editor.scrollbar.horizontal": "hidden", // 隐藏水平滚动条（配合wordWrap，不用横向滚）
+    // 快捷键冲突
+    "keyboard.dispatch": "keyCode", // 优先用键码触发快捷键，避免输入法/系统快捷键冲突
+    // 代码提示（精准触发）
+    "editor.acceptSuggestionOnCommitCharacter": false, // 输入分号/逗号不自动补全代码（避免误触）
+    "editor.quickSuggestions": {
+        "other": "inline", // 其他场景实时内联提示（更灵敏）
+        "comments": "never", // 注释里不弹提示（避免干扰）
+        "strings": "never" // 字符串里不弹提示（避免干扰）
+    },
+    "editor.suggest.snippetsPreventQuickSuggestions": false, // 代码片段不阻止自动提示
+    "editor.acceptSuggestionOnEnter": "off", // 按回车不自动补全（避免误触，用Tab补全）
+    "editor.tabCompletion": "on", // Tab键触发代码补全，更符合操作习惯
+    // 跳转与导航（效率直接起飞）
     "breadcrumbs.enabled": true, // 面包屑导航永远开着，文件层级定位快到飞起
+    "breadcrumbs.filePath": "off", // 面包屑导航仅显示符号，不显示文件路径
     "editor.gotoLocation.multipleDefinitions": "peek", // 多个定义时直接内联Peek查看，少点一次鼠标
     "editor.gotoLocation.multipleImplementations": "peek", // 多个实现时内联Peek
     "editor.gotoLocation.multipleTypeDefinitions": "peek", // 多个类型定义时内联Peek
     "editor.gotoLocation.multipleDeclarations": "peek", // 多个声明时内联Peek
     "editor.gotoLocation.multipleReferences": "peek", // 多个引用时内联Peek
+    // 选中高亮（辅助）
     "editor.occurrencesHighlight": "singleFile", // 选中变量/函数，全文件高亮同名内容
     "editor.selectionHighlight": true, // 高亮选中的文本，避免选中后找不到
+    // 剪贴板增强（跨窗口/设备）
+    "clipboard.copyWithSyntaxHighlighting": false, // 复制代码时不携带语法高亮（粘贴到其他编辑器更干净）
 
     /* ════════════════════════════════════════════════
-     文件管理 & 自动保存（懒人终极福音）
-  ════════════════════════════════════════════════ */
+       文件管理 & 自动保存（懒人终极福音）
+    ════════════════════════════════════════════════ */
+    // 自动保存（核心懒人功能）
     "files.autoSave": "onFocusChange", // 切换窗口/标签就自动保存，我太懒了不想手动点
     "files.autoSaveDelay": 500, // 自动保存延迟500ms，避免频繁写盘占用资源
+    // 侧边栏排序与行为（基础操作）
     "explorer.sortOrder": "type", // 侧边栏按文件类型排序，同类型文件放一起好找
+    "explorer.autoReveal": false, // 关闭文件打开后自动在侧边栏定位，高频切换文件更流畅
     "explorer.confirmDelete": false, // 删除文件别老弹确认框，相信我的操作
     "explorer.confirmDragAndDrop": false, // 拖拽文件别弹确认框，操作更丝滑
-    "explorer.autoReveal": false, // 关闭文件打开后自动在侧边栏定位，高频切换文件更流畅
+    "explorer.compactFolders": false, // 紧凑文件夹设置
+    // 文件嵌套（进阶整理）
     "explorer.fileNesting.enabled": true, // 启用文件嵌套，把关联文件叠在一起（如package.json+lock文件）
     "explorer.fileNesting.patterns": {
         "package.json": "package-lock.json, yarn.lock, pnpm-lock.yaml", // package.json嵌套所有锁文件
         "tsconfig.json": "tsconfig.*.json", // tsconfig.json嵌套所有子配置
-        ".env": ".env.*, .env" // .env嵌套所有环境变量文件
+        ".env": ".env.*" // .env嵌套所有环境变量文件
     },
+    // 隐藏冗余文件（性能与整洁）
     "files.exclude": {
         "**/node_modules": true, // 侧边栏隐藏node_modules，文件太多卡到爆
+        "**/.git": true, // 隐藏.git目录
+        "**/.DS_Store": true, // 隐藏macOS无用的DS_Store文件
         "**/dist": true, // 隐藏打包产物dist
         "**/build": true, // 隐藏build目录
         "**/.next": true, // 隐藏Next.js构建目录
         "**/.nuxt": true, // 隐藏Nuxt.js构建目录
-        "**/.git": true, // 隐藏.git目录
-        "**/.DS_Store": true, // 隐藏macOS无用的DS_Store文件
         "**/.vite": true, // 隐藏Vite缓存目录
         "**/__pycache__": true, // 隐藏Python缓存目录
-        "**/.pytest_cache": true, // 隐藏pytest缓存目录
         "**/*.pyc": true, // 隐藏Python编译后的pyc文件
+        "**/.pytest_cache": true, // 隐藏pytest缓存目录
         "**/coverage": true, // 隐藏测试覆盖率报告目录
         "**/.pnpm-store": true, // 隐藏pnpm缓存目录
         "**/.yarn": true, // 隐藏yarn缓存目录
@@ -73,46 +118,64 @@
         "**/out": true, // 隐藏TypeScript编译产物目录
         "**/.eslintcache": true // 隐藏ESLint缓存文件
     },
+    // 窗口恢复（防冗余标签）
+    "window.restoreWindows": "none", // 重启VS Code不恢复上次打开的文件（避免开一堆标签）
 
     /* ════════════════════════════════════════════════
-     内置终端（18号大字 + 丝滑党专属）
-  ════════════════════════════════════════════════ */
+       内置终端（18号大字 + 丝滑党专属）
+    ════════════════════════════════════════════════ */
+    // 字体与大小（核心显示）
     "terminal.integrated.fontSize": 18, // 老子眼睛近视，终端字体必须大！
     "terminal.integrated.fontFamily": "mononoki, 'JetBrainsMono Nerd Font', 'Aa偷吃可爱长大的', Monaco, monospace", // 终端和编辑器字体保持一致
-    "terminal.integrated.rightClickBehavior": "paste", // 右键直接粘贴，macOS不用再按Cmd+V
+    // 光标样式（定位友好）
     "terminal.integrated.cursorStyle": "underline", // 下划线光标最好看，比方块光标易定位
     "terminal.integrated.cursorBlinking": true, // 光标闪烁，避免看不到光标位置
+    // 操作行为（便捷性）
+    "terminal.integrated.rightClickBehavior": "paste", // 右键直接粘贴，macOS不用再按Cmd+V
+    "terminal.integrated.enableMultiLinePasteWarning": false, // 关闭多行粘贴警告（粘贴代码不弹框）
+    // 输出与集成（进阶功能）
+    "terminal.integrated.scrollback": 10000, // 终端滚动缓冲区设为10000行，能翻更多历史输出
     "terminal.integrated.shellIntegration.enabled": true, // 命令前显示✔/✘，上条命令成功与否一目了然
-    "terminal.external.osxExec": "WezTerm.app", // 点击外部终端按钮直接打开WezTerm，不用系统默认终端
 
     /* ════════════════════════════════════════════════
-     保存与格式化（懒人终极福音）
-  ════════════════════════════════════════════════ */
+       保存与格式化（懒人终极福音）
+    ════════════════════════════════════════════════ */
+    // 基础格式化开关（核心）
     "editor.formatOnSave": true, // 保存时自动格式化
+    "files.trimTrailingWhitespace": true, // 保存时自动删除行尾多余空格
+    // 默认格式化器（统一工具）
+    "editor.defaultFormatter": "esbenp.prettier-vscode", // 默认用Prettier格式化代码，风格统一
+    // 缩进规则（基础规范）
+    "editor.tabSize": 4, // 缩进4个空格
+    "editor.insertSpaces": true, // 用空格代替Tab
+    "editor.detectIndentation": false, // 禁用自动检测缩进，强制统一风格
+    // 保存时代码动作（进阶优化）
     "editor.codeActionsOnSave": {
         "source.organizeImports": "explicit", // 保存自动整理导入语句，删除未使用的import
         "source.fixAll": "never" // 关闭保存自动修复所有问题，避免自动改代码踩坑
     },
-    "editor.defaultFormatter": "esbenp.prettier-vscode", // 默认用Prettier格式化代码，风格统一
-    "editor.formatOnType": false, // 禁用编辑器自带的格式化（避免和Prettier冲突）
-    "editor.tabSize": 4, // 缩进4个空格
-    "editor.insertSpaces": true, // 用空格代替Tab
-    "editor.detectIndentation": false,
+    // ESLint校验（语法检查）
     "eslint.validate": ["javascript", "typescript", "vue", "json"], // ESLint校验这些文件类型，提前发现语法问题
 
     /* ════════════════════════════════════════════════
-     Prettier 专属格式化（前端/JSON/Markdown等）
-  ════════════════════════════════════════════════ */
+       Prettier 专属格式化（前端/JSON/Markdown等）
+    ════════════════════════════════════════════════ */
+    // 基础风格（核心偏好）
     "prettier.singleQuote": true, // Prettier强制用单引号，符合我的代码风格
     "prettier.semi": false, // Prettier结尾不加冒号，精简代码
     "prettier.printWidth": 80, // 每行最多80字符，和编辑器提示线对齐
-    "prettier.tabWidth": 4, // 缩进4个空格
+    "prettier.tabWidth": 4, // 基础缩进4个空格
     "prettier.useTabs": false, // 不用Tab
+    // 标点与括号（细节规范）
     "prettier.trailingComma": "none", // 数组/对象最后一项不加逗号
     "prettier.bracketSpacing": true, // 对象大括号前后加空格 { foo: bar }
     "prettier.arrowParens": "avoid", // 箭头函数单参数省略括号 (x) => x → x => x
-    "prettier.vueIndentScriptAndStyle": true, // Vue的script/style标签内缩进
+    // 跨平台与框架（兼容适配）
     "prettier.endOfLine": "lf", // 换行符LF（跨平台统一）
+    "prettier.vueIndentScriptAndStyle": true, // Vue的script/style标签内缩进
+    // 范围与忽略（进阶控制）
+    "prettier.ignorePath": ".prettierignore", // 读取项目级忽略文件，不用改VS Code配置
+    "prettier.embeddedLanguageFormatting": "auto", // 自动格式化MD/HTML里的代码块
     "prettier.documentSelectors": [
         "**/*.js",
         "**/*.ts",
@@ -127,8 +190,9 @@
     ],
 
     /* ════════════════════════════════════════════════
-     前端专属：2空格缩进（覆盖全局）
-  ════════════════════════════════════════════════ */
+       语言专属配置（针对性优化）
+    ════════════════════════════════════════════════ */
+    // 语言专属格式化（覆盖全局规则）
     "[javascript]": { "editor.tabSize": 2, "editor.rulers": [80] },
     "[typescript]": { "editor.tabSize": 2, "editor.rulers": [80] },
     "[javascriptreact]": { "editor.tabSize": 2, "editor.rulers": [80] },
@@ -138,24 +202,48 @@
     "[css]": { "editor.tabSize": 2, "editor.rulers": [80] },
     "[scss]": { "editor.tabSize": 2, "editor.rulers": [80] },
     "[less]": { "editor.tabSize": 2, "editor.rulers": [80] },
-    "[json]": { "editor.tabSize": 2, "editor.rulers": [80] },
-    "[jsonc]": { "editor.tabSize": 2, "editor.rulers": [80] },
+    "[json]": { "editor.tabSize": 2, "editor.rulers": [120] },
+    "[jsonc]": { "editor.tabSize": 2, "editor.rulers": [120] },
+    // Markdown特殊处理（防排版混乱）
     "[markdown]": {
         "editor.tabSize": 2,
         "editor.rulers": [80],
-        "editor.formatOnSave": false,
+        "editor.formatOnSave": false, // 关闭保存格式化
         "prettier.enable": false // 禁用Prettier格式化MD
     },
+    // TypeScript专属
+    "typescript.preferences.importModuleSpecifier": "relative", // TS导入优先用相对路径（工程化规范）
+    "typescript.inlayHints.parameterNames.enabled": "none", // 关闭TS参数名内联提示（界面清爽）
+    "typescript.updateImportsOnFileMove.enabled": "always", // 移动TS文件自动更新导入路径（懒人福音）
+    // Python专属
+    "python.analysis.autoImportCompletions": true, // Python自动补全导入（不用手动写import）
+    "python.analysis.diagnosticMode": "workspace", // Python诊断范围设为工作区，全局分析更准
+    "python.formatting.provider": "black", // Python用black格式化（行业标准，团队统一）
+    // 嵌入式/C专属
+    "C_Cpp.clang_format_style": "{ BasedOnStyle: Google, IndentWidth: 4 }", // C/C++用Google风格+4空格（嵌入式规范）
+    "C_Cpp.default.intelliSenseMode": "macos-clang-arm64", // macOS ARM适配，IntelliSense更准
+    "C_Cpp.errorSquiggles": "enabled", // 开启C/C++语法错误波浪线，提前排错
 
     /* ════════════════════════════════════════════════
-     Code Runner（全语言一键运行）
-  ════════════════════════════════════════════════ */
+       第三方扩展配置（功能适配）
+    ════════════════════════════════════════════════ */
+    // Todo Tree（待办管理）
+    "todo-tree.tree.showCounts": true, // 显示每个标签的待办数量（TODO/FIXME统计）
+    "todo-tree.highlights.defaultHighlight": { "opacity": 0.3 }, // 待办高亮透明度，不遮挡代码
+    // Path Intellisense（路径补全）
+    "path-intellisense.autoSlashAfterDirectory": true, // 目录后自动加/，路径更规范
+    "path-intellisense.extensionOnImport": true, // 导入时自动加文件后缀（.js/.vue）
+    // Error Lens（错误提示）
+    "errorLens.enabled": true, // 行内显示ESLint/TS错误，不用翻问题面板
+    "errorLens.fontSize": "13px", // 错误提示字体大小，不占太多空间
+    "errorLens.messageAlignment": "after", // 错误提示显示在行尾，不影响代码阅读
+    // Code Runner（全语言一键运行）
     "code-runner.runInTerminal": true, // 必须在终端运行，输出有颜色还能交互
     "code-runner.saveFileBeforeRun": true, // 运行前自动保存文件，防止跑旧代码
-    "code-runner.clearPreviousOutput": true, // 每次运行前清屏，输出结果更干净
     "code-runner.ignoreSelection": true, // 直接运行整个文件，不管有没有选中代码
-    "code-runner.respectShebang": true, // 尊重文件第一行的#!/usr/bin/env，用指定解释器运行
+    "code-runner.clearPreviousOutput": true, // 每次运行前清屏，输出结果更干净
     "code-runner.showExecutionMessage": false, // 不在状态栏刷“Running xxx...”，看着烦
+    "code-runner.respectShebang": true, // 尊重文件第一行的#!/usr/bin/env，用指定解释器运行
     "code-runner.executorMap": {
         "javascript": "node", // JS直接用node运行，简单粗暴
         "typescript": "ts-node --transpile-only", // TS用ts-node实时编译，不生成文件最快
@@ -167,22 +255,49 @@
         "rust": "cd \"$dir\" && rustc \"$fileName\" -O && \"$dir$fileNameWithoutExt\"", // Rust编译+运行，开优化
         "shellscript": "$fileName" // Shell脚本直接运行
     },
+    // Volar（Vue3开发）
+    "volar.completion.preferredAttrNameCase": "kebab-case", // Vue属性自动补全为短横线命名（符合规范）
+    "volar.format.enable": false, // 禁用Volar自带格式化（用Prettier统一）
+    // Parallels Desktop
+    "parallels-desktop.extension.path": "/Users/noahmiller/.parallels-desktop-vscode", // Parallels Desktop扩展的自定义路径
 
     /* ════════════════════════════════════════════════
-     Git 增强配置
-  ════════════════════════════════════════════════ */
+       工程化协作（团队/多项目适配）
+    ════════════════════════════════════════════════ */
+    // 工作区信任（防止恶意代码）
+    "security.workspace.trust.enabled": true, // 启用工作区信任机制，陌生项目自动限制权限
+    "security.workspace.trust.startupPrompt": "always", // 启动时提示信任工作区，不自动信任
+    // 多根工作区（monorepo友好）
+    "workbench.editor.revealIfOpen": false, // 多项目下打开文件不自动切标签，避免混乱
+    // 配置覆盖（项目级配置优先级）
+    "workbench.settings.applyToAllProfiles": false, // 个人配置不覆盖项目级settings.json
+    "files.useExperimentalFileWatcher": false, // 禁用实验性文件监控，monorepo更稳定
+    // Git 增强配置
     "git.autofetch": true, // 自动拉取远程最新提交，不用手动git fetch
     "git.confirmSync": false, // Git同步（拉/推）不弹确认框，操作更快捷
 
     /* ════════════════════════════════════════════════
-     交互体验优化
-  ════════════════════════════════════════════════ */
+       性能优化（大文件/多项目友好）
+    ════════════════════════════════════════════════ */
+    "editor.largeFileOptimizations": true, // 大文件自动开启优化（如禁用语法高亮/折叠）
+    "search.exclude": {
+        "**/node_modules": true, // 搜索时排除node_modules（搜文件更快）
+        "**/dist": true, // 搜索时排除打包产物dist
+        "**/.git": true, // 搜索时排除.git目录
+        "**/__pycache__": true // 搜索时排除Python缓存目录
+    },
+    "keyboard.touchbar.enabled": false, // 禁用Mac触控栏（没用还占资源）
+    /* ════════════════════════════════════════════════
+       交互体验优化
+    ════════════════════════════════════════════════ */
+    // 专注模式（沉浸式编码）
     "zenMode.hideActivityBar": true, // 专注模式（Zen Mode）隐藏活动栏，减少干扰
     "zenMode.hideStatusBar": true, // 专注模式隐藏状态栏，沉浸式编码
 
     /* ════════════════════════════════════════════════
-     隐私与更新设置
-  ════════════════════════════════════════════════ */
+       隐私与更新设置
+    ════════════════════════════════════════════════ */
+    // AI功能禁用（核心隐私）
     "editor.inlineSuggest.enabled": false, // 关闭AI内联提示，幽灵字彻底消失
     "chat.enabled": false, // 关闭侧边栏Chat功能，用不到还占空间
     "github.copilot.enable": { "*": false }, // 全局关闭Copilot，完全不用AI提示
@@ -190,11 +305,12 @@
         "GitHub.copilot", // 彻底禁用Copilot扩展
         "GitHub.copilot-chat" // 彻底禁用Copilot Chat扩展
     ],
+    // 数据收集禁用（彻底隐私）
     "telemetry.telemetryLevel": "off", // 关闭所有遥测，微软别偷看我的操作
+    "telemetry.enableCrashReporter": false, // 关闭崩溃上报（彻底杜绝数据收集）
+    // 更新与实验功能（防干扰）
     "update.mode": "manual", // 手动检查更新，不自动弹更新提示烦我
-
-    /* ════════════════════════════════════════════════
-     第三方扩展适配
-  ════════════════════════════════════════════════ */
-    "parallels-desktop.extension.path": "/Users/noahmiller/.parallels-desktop-vscode" // Parallels Desktop扩展的自定义路径
+    "update.showReleaseNotes": false, // 手动更新后不弹更新日志（不用看废话）
+    "extensions.showRecommendationsOnlyOnDemand": true, // 仅手动触发扩展推荐（不主动弹）
+    "workbench.enableExperiments": false // 关闭VS Code实验性功能（避免出bug）
 }
